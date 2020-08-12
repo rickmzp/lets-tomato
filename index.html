@@ -7,12 +7,13 @@
 </head>
 <body>
   <p id="time-left">25:00</p>
-
+  <audio src="beep.mp3"></audio>
   <script>
     var timeLeft = 25 * 60;
     setInterval(function() {
       if (timeLeft <= 0) return;
       timeLeft = timeLeft - 1;
+      if (timeLeft === 0) document.querySelector('audio').play();
       var duration = luxon.Duration.fromObject({ seconds: timeLeft });
       document.getElementById('time-left').innerHTML = duration.toFormat('m:ss');
     }, 1000);
